@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "PublicProfile";
+}
+<h2>
+    Public Profile</h2>
+<div style="overflow:auto;width:100%">
+    <div style="float:left">
+        <img src='@Url.Action("ProfileAvatar", "Image", new { id = ViewBag.userId })' width=200px height=200px />
+    </div>
+    <div style="width: 30%; float:left; margin-left:10px">
+        <fieldset>
+            <legend>@ViewBag.UserName's profile</legend>
+            @Html.Label("Name:")
+        </fieldset>
+    </div>
+</div>

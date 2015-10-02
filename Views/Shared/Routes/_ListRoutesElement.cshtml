@@ -1,0 +1,70 @@
+﻿@model Cykelnet.Models.RouteModel
+@using Cykelnet.Helpers;
+
+    @if (Model.isFavorite((Guid)Membership.GetUser().ProviderUserKey))
+    {
+        @Ajax.ImageActionLink("../../Content/Images/Icons/bookmark.png", "Favorite", "Favorite", new { routeID = Model.routeID, makeFavorite = false }, new AjaxOptions { UpdateTargetId = "routeRow-" + @Model.routeID, InsertionMode = InsertionMode.Replace }, "favorite", "");
+    }
+    else
+    {
+        @Ajax.ImageActionLink("../../Content/Images/Icons/bookmark-silver.png", "Favorite", "Favorite", new { routeID = Model.routeID, makeFavorite = true }, new AjaxOptions { UpdateTargetId = "routeRow-" + @Model.routeID, InsertionMode = InsertionMode.Replace }, "favorite", "");
+    }
+
+
+
+	<div style="float:left; width: 170px;">
+		<div class="routeName" onclick="Index.showRoute(@Model.routeID)">@Model.name<span class="routeLength">(@Model.getLength())</span></div>
+            @if(Model.userID == (Guid)Membership.GetUser().ProviderUserKey)
+            {
+                @Html.ActionLink("Delete", "Delete", "Route", new { id = Model.routeID }, null);
+            }
+        @Html.ActionLink("Created by " + AuthenticationHelper.getVersionedUser(Model.userID, false).FullName, "PublicProfile", "Account", new { id = (Guid)Model.userID }, new { Class = "routeBy" })
+		<div class="routeDescription">@Model.description</div>
+	</div>
+	<div style="float:right">
+		<div style="text-align: right">
+        @if (Model.isDownvoted((Guid)Membership.GetUser().ProviderUserKey))
+        {
+            @Ajax.ImageActionLink("../../Content/Images/Icons/upvote_grey.png", "Like", "RatingVote", new { id = Model.routeID, vote = true }, new AjaxOptions { UpdateTargetId = "routeRow-" + @Model.routeID, InsertionMode = InsertionMode.Replace }, "upvote_deactive", "routeRowImg-" + @Model.routeID)
+            @Ajax.ImageActionLink("../../Content/Images/Icons/downvote.png", "Dislike", "RatingVote", new { id = Model.routeID, vote = false }, new AjaxOptions { UpdateTargetId = "routeRow-" + @Model.routeID, InsertionMode = InsertionMode.Replace }, "", "")       
+            
+            <script>
+                // Onhover show non-greyed
+                $('#routeRowImg-@Model.routeID').hover(function () {
+                    $(this).attr('src', '../../Content/Images/Icons/upvote.png'/* normal img url*/);
+                }, function () {
+                    $(this).attr('src', '../../Content/Images/Icons/upvote_grey.png'/* grey img url*/);
+                });
+            </script>
+        }
+        else if (Model.isUpvoted((Guid)Membership.GetUser().ProviderUserKey))
+        {
+            @Ajax.ImageActionLink("../../Content/Images/Icons/upvote.png", "Like", "RatingVote", new { id = Model.routeID, vote = true }, new AjaxOptions { UpdateTargetId = "routeRow-" + @Model.routeID, InsertionMode = InsertionMode.Replace }, "", "")
+            @Ajax.ImageActionLink("../../Content/Images/Icons/downvote_grey.png", "Dislike", "RatingVote", new { id = Model.routeID, vote = false }, new AjaxOptions { UpdateTargetId = "routeRow-" + @Model.routeID, InsertionMode = InsertionMode.Replace }, "downvote_deactive", "routeRowImg-" + @Model.routeID)     
+            <script>
+                // Onhover show non-greyed
+                $('#routeRowImg-@Model.routeID').hover(function () {
+                    $(this).attr('src', '../../Content/Images/Icons/downvote.png'/* normal img url*/);
+                }, function () {
+                    $(this).attr('src', '../../Content/Images/Icons/downvote_grey.png'/* grey img url*/);
+                });
+            </script>
+        }
+        else
+        {
+            @Ajax.ImageActionLink("../../Content/Images/Icons/upvote.png", "Like", "RatingVote", new { id = Model.routeID, vote = true }, new AjaxOptions { UpdateTargetId = "routeRow-" + @Model.routeID, InsertionMode = InsertionMode.Replace }, "", "")
+            @Ajax.ImageActionLink("../../Content/Images/Icons/downvote.png", "Dislike", "RatingVote", new { id = Model.routeID, vote = false }, new AjaxOptions { UpdateTargetId = "routeRow-" + @Model.routeID, InsertionMode = InsertionMode.Replace }, "", "")       
+        }
+		</div>
+		<div>
+            <div class="ratingBar">
+	            <div class="green" style="width: @Model.getUpvotePercentage().ToString().Replace(",",".")%;"></div>
+	            <div class="red" style="width: @Model.getDownvotePercentage().ToString().Replace(",", ".")%"></div>
+            <div>
+            <span class="likes_dislikes">
+                @Model.getRatingLikes() likes, @(Model.ratings.Count - Model.getRatingLikes()) dislikes
+            </span>
+
+			<!--<progress value='@Model.getRatingLikes()' max='@Model.ratings.Count'>@Model.getRatingLikes() likes</progress>-->
+		</div>
+	</div>

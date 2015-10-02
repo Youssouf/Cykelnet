@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Cykelnet";
+}
+
+@section CSS
+{
+     <link href="@Url.Content("~/Content/CSS/Home/Index.css")" rel="stylesheet" type="text/css" />
+}
+@section Javascript
+{
+    <script src="http://www.google.com/jsapi"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+
+    <script>
+        function resize()
+	    {
+		    var _width = $(window).width() - 20 - 20 - 10 - 20 - 20 - $('#sidebar').width();
+		    var _height = $(window).height() - 20 - 20 - 120 - 20;
+		    $('#main').width(_width).height(_height);
+		    $('#sidebar').height(_height);
+		    $('#gmapList').height($('#gmapSection').height());
+	    }
+    </script>
+}  
+
+<section id="main" style="position:relative;">
+    <div id="routeControls">
+        <ul>
+            <li><a href="" id="control_newRoute">Make new route</a> |</li>
+            <li><a href="" id="control_myRoutes">My Routes</a> |</li>
+            <li><a href="" id="control_favorites">Favorite routes</a> |</li>
+            <li><a href="" id="control_listRoutes">List routes</a> |</li>
+            <li><a href="" id="control_searchPoint">Search nearest routes</a></li>
+            <li style="float:right; margin-right: 20px;">
+                <input type="search" id="control_searchRoutes" placeholder="Search routes" />
+                <img src="@Url.Content("~/Content/Images/Icons/magnifier.png")" alt="Search Routes" id="controls_searchRoutes_img" style="cursor: pointer;" />
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <div id="gmapList" style="display:none;"></div>
+	    <div id="gmapSection"></div>
+    </div>
+</section>
+	
+<section id="sidebar">
+    @{Html.RenderPartial("Friends/_PendingRequests", Cykelnet.Models.FriendRequestModel.getFriendRequests((Guid)Membership.GetUser().ProviderUserKey));}
+    
+    <div id="sidebar-events">
+    </div>
+</section>
+<!-- Javascript at the bottom helps load the page faster -->
+<script>
+    $('#gmapSection').resize(function () {
+        _CN_Map.triggerResize();
+    });
+</script>
+<script src="@Url.Content("~/Scripts/Javascript/Home/Index.js")"></script>
+
+<script type="text/template" id="new_route_tmpl">
+    <form action="" autocomplete="off" id="route_form" name="route_form">
+        <fieldset>
+            <legend>Help</legend>
+            <div style="margin-left: 10px;">
+                <strong>Click</strong> to set a point, click another place on the map to make a line.<br>
+                <strong>Right-click</strong> to remove the last point set.<br><br>
+                <button type="button" style="padding: 0; margin: 0;" onclick="Index.getGeolocation()">Click to find your current location on the map</button>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Route information</legend>
+            <label>Route name</label>
+            <input type="text" name="route_name" id="route_name" placeholder="Name" required="required">
+            <br>
+            <label>City</label>
+            <input type="text" name="route_city" id="route_city" placeholder="City" required="required">
+        </fieldset>
+        <fieldset>
+            <legend>Optional information</legend>
+            <label>Description</label>
+            <textarea name="route_description" id="route_description" rows="5" cols="10" placeholder="Description"></textarea>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Tag your route</legend>
+            <label>Add a new tag</label>
+            <div class="clear"></div>
+            <input type="text" id="tag_add" style="float: left" /><button type="button" onclick="Route.addTag()" style="float:left;">Add tag</button>
+            <div class="clear"></div>
+            <div id="route_tags" style="display:none;">
+                <!-- <input type="text" name="route_tags[]" /> -->
+            </div>
+            <br>
+            <label>Existing tags</label>        
+            <ul id="route_tag_list">
+            </ul>
+        </fieldset>
+        <button type="submit" id="new_route_submit_btn">Save route</button>
+    </form>
+</script>

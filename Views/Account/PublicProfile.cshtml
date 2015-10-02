@@ -1,0 +1,111 @@
+﻿@model Cykelnet.Models.PublicProfileModel
+@{
+    ViewBag.Title = "PublicProfile";
+}
+<section class="main">
+<h2>
+    Public Profile</h2>
+<div style="overflow: auto; width: 100%">
+    <div style="float: left">
+        <img src='@Url.Action("ProfileAvatar", "Image", new { id = Model.id })' alt="Profile Avatar" width=200px height=200px /> <br />
+        @if (Model.id != (Guid)Membership.GetUser().ProviderUserKey)
+        {
+        <div>
+            @if (Cykelnet.Models.FriendRequestModel.isRequested((Guid)Membership.GetUser().ProviderUserKey, Model.id))
+            {
+                <button type="button" id="removeRequest" onclick="removeRequest('@Model.id')">
+                    Remove friendship request</button>    
+            }
+            else if (!Cykelnet.Models.FriendsModel.isFriends((Guid)Membership.GetUser().ProviderUserKey, Model.id))
+            {
+                <button type="button" id="requestFriendship" onclick="requestFriendship('@Model.id')">
+                    Request friendship</button>    
+            }
+            else
+            {
+                <button type="button" id="removeFriendship" onclick="removeFriendship('@Model.id')">
+                    End friendship</button>    
+            }
+        </div>
+        }
+
+    </div>
+    <div style="width: 30%; float: left; margin-left: 10px">
+    <div>
+        <fieldset>
+            <legend>@Model.UserName's profile</legend>
+            @Html.LabelFor(m => m.FullName)
+            @Html.DisplayFor(m => m.FullName)
+            <br />
+            @if (Model.hasAge)
+            {
+            @Html.LabelFor(m => m.Age)
+            @Html.DisplayFor(m => m.Age)
+            <br />
+            }
+            @Html.LabelFor(m => m.CyclistType)
+            @Html.DisplayFor(m => m.CyclistType)
+        </fieldset>
+    </div>
+    <!--
+     <div>
+        <fieldset>
+            <legend>@Model.UserName's Events</legend>
+            @{/*Html.Action("EventList", "Event")*/}
+        </fieldset>
+    </div>
+    -->
+    </div>
+
+    <div style="width: 30%; float: right; margin-left: 10px">
+        <!--<h2>@Model.UserName's Friends</h2>-->
+        @{Html.RenderPartial("Friends/_FriendsList", Cykelnet.Models.FriendsModel.getFriendsAsVersionedUser(Model.id));}
+    </div>
+
+    
+    <script type="text/javascript">
+        function requestFriendship(Guid) {
+            $.ajax({
+                type: 'GET',
+                url: '/Friend/Request/' + Guid,
+                success: function (data) {
+                    window.location.reload();
+                },
+                error: function (data) {
+                    if (confirm("Error")) {
+                    }
+                    window.location.reload();
+                }
+            });
+        }
+        function removeRequest(Guid) {
+            $.ajax({
+                type: 'GET',
+                url: '/Friend/RemoveRequest/' + Guid,
+                success: function (data) {
+                    window.location.reload();
+                },
+                error: function (data) {
+                    if (confirm("Error")) {
+                    }
+                    window.location.reload();
+                }
+            });
+        }
+        function removeFriendship(Guid) {
+            $.ajax({
+                type: 'GET',
+                url: '/Friend/RemoveFriend/' + Guid,
+                success: function (data) {
+                    window.location.reload();
+                },
+                error: function (data) {
+                    if (confirm("Error")) {
+                    }
+                    window.location.reload();
+                }
+            });
+        }
+    </script>
+</div>
+</section>

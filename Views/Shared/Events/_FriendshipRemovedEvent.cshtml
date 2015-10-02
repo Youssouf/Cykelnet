@@ -1,0 +1,8 @@
+﻿@model Cykelnet.Models.Events.FriendshipRemovedEvent
+
+<img src='@Url.Action("ProfileAvatar", "Image", new { id = Model.mUser1 })' alt="avatar" class="avatar" />
+<div class="event-user-name">
+	@Html.ActionLink(AuthenticationHelper.getVersionedUser(Model.mUser1, false).FullName, "PublicProfile", "Account", new { id = (Guid)Model.mUser1 }, new { Class = "event-creator" })
+    is no longer friends with @Html.ActionLink(AuthenticationHelper.getVersionedUser(Model.mUser2, false).FullName, "PublicProfile", "Account", new { id = (Guid)Model.mUser2 }, new { Class = "event-creator" })
+</div>
+

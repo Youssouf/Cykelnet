@@ -1,0 +1,15 @@
+﻿@model Cykelnet.Models.FriendRequest
+
+<img src='@Url.Action("ProfileAvatar", "Image", new { id = Model.FromUser })' alt="Profile Avatar" class="avatar" />
+<div class="request-content">
+	<div class="request-text">
+        @Html.ActionLink(AuthenticationHelper.getVersionedUser(Model.FromUser, false).FullName, "PublicProfile", "Account", new { id = (Guid)Model.FromUser }, new { Class = "routeBy" }) has sent you a friend request.
+    </div>
+	<div class="request-actions">
+		<!--<span>@Html.ActionLink("Accept", "Accept", new { controller = "Friend", id = Model.FromUser })</span>-->
+        <span>@Ajax.ActionLink("Accept", "Accept", "Friend", new { id = Model.FromUser }, new AjaxOptions { UpdateTargetId = "friend-request-" + Model.FromUser, InsertionMode = InsertionMode.Replace })</span>
+        <span>@Ajax.ActionLink("Reject", "Reject", "Friend", new { id = Model.FromUser }, new AjaxOptions { UpdateTargetId = "friend-request-" + Model.FromUser, InsertionMode = InsertionMode.Replace })</span>
+
+		<!--<span>@Html.ActionLink("Reject", "Reject", new { controller = "Friend", id = Model.FromUser })</span>-->
+	</div>
+</div>

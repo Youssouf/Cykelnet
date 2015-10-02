@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "RouteTest";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
+}
+@section CSS {
+    <link href="@Url.Content("~/Content/CSS/Shared/qunit.css")" rel="stylesheet" type="text/css" />
+}
+@section Javascript
+{
+    <script src="http://www.google.com/jsapi"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
+    <script src="@Url.Content("~/Scripts/Javascript/Shared/qunit.js")"></script>
+    <!-- Code to be tested -->
+    <script src="@Url.Content("~/Scripts/Javascript/Route/CykelNet_Map.js")"></script>
+    <!-- Tests -->
+    <script>
+       $(document).ready(function () {
+           module("CykelNet_Map");
+           test("Instatiation test", function () {
+               expect(2);
+               
+               // --------------------
+               // Arrange
+               // --------------------
+               var _Options = {
+                   Lat: 57.028811,
+                   Long: 9.917771,
+                   MapContainerID: "MapContainer",
+                   zoom: 8,
+                   mapTypeId: google.maps.MapTypeId.ROADMAP,
+               };
+               
+               // --------------------
+               // Act
+               // --------------------
+               var _CN_Map = new CykelNet_Map(_Options);
+               var _currentCenter = _CN_Map.getCurrentCenter();
+
+               // --------------------
+               // Assert
+               // --------------------
+               deepEqual(_currentCenter, { Lat: 57.028811, Long: 9.917771 }, 'Expected {Lat:  57.028811, Long:9.917771}.');
+               ok($('#MapContainer').html() != null, "Should contain HTML made by the Google Maps API");
+           });
+
+           test("Draw route", function(){
+               // --------------------
+               // Arrange
+               // --------------------
+                var _TestCoords = { 
+                    coord1:{
+                        Latitude: 57.18393885163565,
+                        Longitude: 9.291550296875016
+                    },
+                    coord2:{
+                        Latitude: 56.25559536985647,
+                        Longitude: 9.610153812500016
+                    },
+                    coord3:{
+                        Latitude: 56.92103401455642,
+                        Longitude: 10.066086429687516
+                    },                
+                };
+
+                var _MapOptions = {
+                   Lat: 57.028811,
+                   Long: 9.917771,
+                   MapContainerID: "MapContainer",
+                   zoom: 8,
+                   mapTypeId: google.maps.MapTypeId.ROADMAP,
+               };
+
+                $('#MapContainer').html("");
+
+                var _CN_Map = new CykelNet_Map(_MapOptions); 
+
+                // --------------------
+                // Act
+                // --------------------
+                _CN_Map.addCoord(_TestCoords.coord1.Latitude, _TestCoords.coord1.Longitude);
+                _CN_Map.addCoord(_TestCoords.coord2.Latitude, _TestCoords.coord2.Longitude);
+                _CN_Map.addCoord(_TestCoords.coord3.Latitude, _TestCoords.coord3.Longitude);
+
+                // --------------------
+                // Assert
+                // --------------------
+                var _result = [
+                    {Latitude: 57.18393885163565,Longitude: 9.291550296875016},
+                    {Latitude: 56.25559536985647,Longitude: 9.610153812500016},
+                    {Latitude: 56.92103401455642, Longitude: 10.066086429687516}
+                ];
+
+                deepEqual(_CN_Map.getRoute(), _result, 'Expected list contains three coordinates.');
+              });
+
+            test('Delete last point on route', function(){
+                // --------------------
+               // Arrange
+               // --------------------
+                var _TestCoords = { 
+                    coord1:{
+                        Latitude: 57.18393885163565,
+                        Longitude: 9.291550296875016
+                    },
+                    coord2:{
+                        Latitude: 56.25559536985647,
+                        Longitude: 9.610153812500016
+                    },
+                    coord3:{
+                        Latitude: 56.92103401455642,
+                        Longitude: 10.06608642968751
+                    },                
+                };
+
+                var _MapOptions = {
+                   Lat: 57.028811,
+                   Long: 9.917771,
+                   MapContainerID: "MapContainer",
+                   zoom: 8,
+                   mapTypeId: google.maps.MapTypeId.ROADMAP,
+               };
+
+                $('#MapContainer').html("");
+
+                var _CN_Map = new CykelNet_Map(_MapOptions);
+                _CN_Map.addCoord(_TestCoords.coord1.Latitude, _TestCoords.coord1.Longitude);
+                _CN_Map.addCoord(_TestCoords.coord2.Latitude, _TestCoords.coord2.Longitude);
+                _CN_Map.addCoord(_TestCoords.coord3.Latitude, _TestCoords.coord3.Longitude);
+
+                // --------------------
+                // Act
+                // --------------------
+                _CN_Map.popCoord();
+
+                // --------------------
+                // Assert
+                // --------------------
+                var _result = [
+                    {Latitude: 57.18393885163565,Longitude: 9.291550296875016},
+                    {Latitude: 56.25559536985647,Longitude: 9.610153812500016},
+                ];
+
+                deepEqual(_CN_Map.getRoute(), _result, 'Expected list contains two coordinates.');  
+            });
+
+       });       
+
+    </script>
+}
+<!-- Test -->
+<h1 id="qunit-header">
+    QUnit example</h1>
+<h2 id="qunit-banner">
+</h2>
+<h2 id="qunit-userAgent">
+</h2>
+<ol id="qunit-tests">
+</ol>
+<div>
+    <h5>
+        Random test stuff</h5>
+    <div id="MapContainer" style="height: 500px; width: 500px;">
+    </div>
+</div>

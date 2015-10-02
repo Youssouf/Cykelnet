@@ -1,0 +1,164 @@
+﻿#main
+{
+    float: left;
+    background: #fff;
+    margin-right: 10px;
+    min-height: 340px;
+    min-width: 460px;
+    padding: 10px 10px 10px 10px;
+    -moz-border-radius: 0px 4px 4px 0px;
+    -webkit-border-radius: 0px 4px 4px 0px;
+    border-radius: 0px 4px 4px 0px;
+    position: relative;
+}
+
+#routeControls
+{
+    height: 30px;
+    position: absolute;
+    width: 100%;
+}
+
+#routeControls ul
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#routeControls ul li
+{
+    float: left;
+}
+
+#routeControls ul li a
+{
+    cursor: pointer;
+    color: Blue;
+    text-decoration: none;
+}
+#routeControls ul li a:hover
+{
+    text-decoration: underline;
+}
+
+#routeControls ul li:not(:first-child)
+{
+    margin-left: 10px;
+}
+
+#gmapSection
+{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0px;
+    margin: 40px 10px 10px 10px;
+    overflow: hidden;
+    position: absolute;
+    width: auto;
+}
+
+#gmapList
+{
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0px;
+    position: absolute;
+    width: 400px;
+    margin: 40px 10px 10px 10px;
+    overflow-y: scroll;
+}
+
+.routeList { margin: 0; padding: 0; }
+		
+.routeList li {
+	clear:both;
+	list-style: none;
+	width: 380px;
+}
+		
+.routeList li:not(:first-child){ padding-top: 30px; }
+		
+.routeList li .favorite {
+	cursor: pointer;
+	float: left;
+	margin: 17px 10px auto 10px;
+}
+		
+.routeList li .routeName {
+	font-size: 16px;
+	color: red;
+}
+
+.routeList li .routeName:hover {
+	text-decoration: underline;
+	cursor: pointer;
+}
+		
+.routeList li .routeName .routeLength {
+	font-size: 12px;
+	color: gray;
+	margin-left: 5px;
+}
+		
+.routeList li .routeDescription {
+	font-size: 14px;
+	color: black;
+	word-wrap: break-word;
+}
+
+.routeList li .routeBy 
+{
+    color: Blue;
+    font-size: 10px;
+    font-family: Arial;
+    text-decoration: none;
+}
+
+.routeList li .routeBy:hover
+{
+    text-decoration: underline;
+}
+
+.ratingBar { height: 5px; width: 137px; }
+.ratingBar .green { background-color: #060; border-right: 1px solid white; height: 5px; float: left;}
+.ratingBar .red { background-color: #C00; height: 5px; float: right; }
+.likes_dislikes { font: normal 12px Arial; color: #666; }
+
+
+#sidebar { background: #fff; min-height: 330px; overflow: hidden; width: 320px; padding: 10px 10px 10px 10px; -moz-border-radius: 4px 0px 0px 4px; -webkit-border-radius: 4px 0px 0px 4px; border-radius: 4px 0px 0px 4px; }
+#sidebar h1 { margin: 0px 0px 10px 0px; padding: 0; color: #5E6B9B; font: bold 18px Arial; }
+#sidebar>div:not(:first-child) { margin-top: 20px; }
+.friend-request { margin: 0; padding: 0 }
+.friend-request li:not(:first-child){ padding-top: 15px; }
+.friend-request li { clear: both; font: normal 12px Arial; list-style: none; width: 300px; word-wrap: break-word; }
+.friend-request li .avatar { float:left; height: 34px; margin: auto 10px auto 5px; width: 34px; }
+.friend-request li .request-content { float: left; width: 251px; word-wrap: break-word; }
+.friend-request li .request-content .request-text {  }
+.friend-request li .request-content .request-text a { color: blue; font-weight: bold; text-decoration: none; }
+.friend-request li .request-content .request-text a:hover { text-decoration: underline; }
+.friend-request li .request-content .request-actions span { color: blue; cursor: pointer; font-weight: bold; margin-right: 5px; }
+.friend-request li .request-content .request-actions span:hover { text-decoration: underline; }
+.friend-request li .friend-name {  }
+.friend-request li .friend-name a { color: blue; font-weight: bold; text-decoration: none; }
+.friend-request li .friend-name a:hover { text-decoration: underline; }
+
+.event-list { margin: 0; padding: 0; }
+.event-list li { list-style: none; clear: both; width: 300px; word-wrap: break-word; font: normal 12px Arial; }
+.event-list li:not(:first-child){ padding-top: 15px; }
+.event-list li .avatar { float:left; height: 34px; margin: auto 10px auto 5px; width: 34px; }
+.event-list li a { color: blue; font-weight: bold; text-decoration: none; }
+.event-list li a:hover { text-decoration: underline; }
+
+
+#route_form fieldset
+{
+    border: 0px solid white;
+    margin-bottom: 0;
+}
+#route_form label { margin-left: 10px; }
+#route_form input, #route_form select, #route_form textarea { display: block; width: 240px; margin-left: 30px; }
+#route_form ul { padding-top: 0; margin-top: 0; }
+#route_form ul li { list-style: none; }

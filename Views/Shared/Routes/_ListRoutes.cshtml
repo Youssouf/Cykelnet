@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Cykelnet.Models.RouteModel>
+
+<ul class="routeList">
+@foreach (var item in Model)
+{
+    <li id="routeRow-@item.routeID">
+        @{Html.RenderPartial("Routes/_ListRoutesElement", item);}
+    </li>
+}
+</ul>

@@ -1,0 +1,6 @@
+﻿@model Cykelnet.VersionedUser
+
+<img src='@Url.Action("ProfileAvatar", "Image", new { id = Model.ProviderUserKey })' alt="Profile Avatar" class="avatar" />
+<div class="friend-name">
+	@Html.ActionLink(Model.FullName, "PublicProfile", "Account", new { id = (Guid)Model.getGuid() }, new { })
+</div>

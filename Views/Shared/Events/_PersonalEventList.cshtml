@@ -1,0 +1,30 @@
+﻿@model List<Cykelnet.Models.Events.IEvent>
+
+@if (Model.Count > 0)
+{
+    <h1>Personal event list</h1>
+    <ul class="event-list">
+    @foreach (Cykelnet.Models.Events.IEvent item in Model)
+    {
+        <li>
+            @if (item is Cykelnet.Models.Events.RouteCreatedEvent)
+            {
+                Html.RenderPartial("Events/_RouteCreatedEvent", item);
+            }
+            else if (item is Cykelnet.Models.Events.RouteFavoredEvent)
+            {
+                Html.RenderPartial("Events/_RouteFavoredEvent", item);
+            }
+            else if (item is Cykelnet.Models.Events.FriendshipEstablishedEvent)
+            {
+                Html.RenderPartial("Events/_FriendshipEstablishedEvent", item);
+            }
+            else if (item is Cykelnet.Models.Events.FriendshipRemovedEvent)
+            {
+                Html.RenderPartial("Events/_FriendshipRemovedEvent", item);
+            }
+            else { /*This can never happen(tm) - Unknown event*/ }
+        </li>
+    }
+    </ul>
+}

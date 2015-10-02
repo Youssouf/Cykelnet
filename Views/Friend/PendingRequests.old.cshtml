@@ -1,0 +1,29 @@
+﻿@model List<Cykelnet.Models.FriendRequest>
+@{
+    ViewBag.Title = "Pending Requests";
+}
+
+<h2>PendingRequests</h2>
+
+<table>
+    <tr>
+        <th>From</th>
+        <th>Accept</th>
+        <th>Reject</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @System.Web.Security.Membership.GetUser(item.FromUser).UserName
+        </td>
+        <td>
+            @Html.ActionLink("Accept", "Accept", new { id = item.FromUser })
+        </td>
+        <td>
+            @Html.ActionLink("Reject", "Reject", new { id = item.FromUser })
+        </td>
+    </tr>
+}
+
+</table>

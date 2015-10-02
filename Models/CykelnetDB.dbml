@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Cykelnet" Class="CykelnetDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=172.31.248.92;Initial Catalog=Cykelnet;Persist Security Info=True;User ID=Cykelnet" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CykelnetConnectionString1" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.FriendRequest" Member="FriendRequests">
+    <Type Name="FriendRequest">
+      <Column Name="RequestID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FromUser" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ToUser" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="RequestTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Accepted" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AcceptedTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="User_FriendRequest" Member="User" ThisKey="FromUser" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="User_FriendRequest1" Member="User1" ThisKey="ToUser" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Friends" Member="Friends">
+    <Type Name="Friend">
+      <Column Name="FriendRelationID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User1" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FriendsSince" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FriendsTil" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Friend_EventsFriendshipRemoved" Member="EventsFriendshipRemoveds" ThisKey="FriendRelationID" OtherKey="FriendRelationID" Type="EventsFriendshipRemoved" />
+      <Association Name="Friend_EventsFriendshipEstablished" Member="EventsFriendshipEstablisheds" ThisKey="FriendRelationID" OtherKey="FriendRelationID" Type="EventsFriendshipEstablished" />
+      <Association Name="User_Friend" Member="User" ThisKey="User1" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="User_Friend1" Member="User3" ThisKey="User2" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Favorites" Member="Favorites">
+    <Type Name="Favorite">
+      <Column Name="Favorite_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Route_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Route_Favorite" Member="Route" ThisKey="Route_ID" OtherKey="RouteID" Type="Route" IsForeignKey="true" />
+      <Association Name="User_Favorite" Member="User" ThisKey="User_ID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Ratings" Member="Ratings">
+    <Type Name="Rating">
+      <Column Name="Rate_ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Route_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Rate" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Route_Rating" Member="Route" ThisKey="Route_ID" OtherKey="RouteID" Type="Route" IsForeignKey="true" />
+      <Association Name="User_Rating" Member="User" ThisKey="User_ID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tags" Member="Tags">
+    <Type Name="Tag">
+      <Column Name="TagName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Tag_ID" AutoSync="Never" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="Tag_Routetag" Member="Routetags" ThisKey="Tag_ID" OtherKey="Tag_ID" Type="Routetag" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Routetags" Member="Routetags">
+    <Type Name="Routetag">
+      <Column Name="Tag_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Route_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Association Name="Tag_Routetag" Member="Tag" ThisKey="Tag_ID" OtherKey="Tag_ID" Type="Tag" IsForeignKey="true" />
+      <Association Name="Route_Routetag" Member="Route" ThisKey="Route_ID" OtherKey="RouteID" Type="Route" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Routes" Member="Routes">
+    <Type Name="Route">
+      <Column Name="RouteID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="City" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Heightmeters" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="ValidFrom" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ValidTo" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Route_Favorite" Member="Favorites" ThisKey="RouteID" OtherKey="Route_ID" Type="Favorite" />
+      <Association Name="Route_Rating" Member="Ratings" ThisKey="RouteID" OtherKey="Route_ID" Type="Rating" />
+      <Association Name="Route_Routetag" Member="Routetags" ThisKey="RouteID" OtherKey="Route_ID" Type="Routetag" />
+      <Association Name="Route_Recommendation" Member="Recommendations" ThisKey="RouteID" OtherKey="Route_ID" Type="Recommendation" />
+      <Association Name="Route_EventsRouteCreated" Member="EventsRouteCreateds" ThisKey="RouteID" OtherKey="EventRouteID" Type="EventsRouteCreated" />
+      <Association Name="Route_EventsRouteFavored" Member="EventsRouteFavoreds" ThisKey="RouteID" OtherKey="EventRouteID" Type="EventsRouteFavored" />
+      <Association Name="User_Route" Member="User" ThisKey="User_ID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Recommendations" Member="Recommendations">
+    <Type Name="Recommendation">
+      <Column Name="User_ID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Route_ID" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Confidence" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Route_Recommendation" Member="Route" ThisKey="Route_ID" OtherKey="RouteID" Type="Route" IsForeignKey="true" />
+      <Association Name="User_Recommendation" Member="User" ThisKey="User_ID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="UserPassword" Type="System.Data.Linq.Binary" DbType="Binary(64)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="UserEmail" Type="System.String" DbType="NVarChar(256)" CanBeNull="true" />
+      <Column Name="ApplicationName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserCyclistType" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserFullName" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserAddress1" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserAddress2" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserCountry" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="UserBirthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="UserDeleteDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ValidFrom" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastActivityDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CreationDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_FriendRequest" Member="FriendRequests" ThisKey="UserID" OtherKey="FromUser" Type="FriendRequest" />
+      <Association Name="User_FriendRequest1" Member="FriendRequests1" ThisKey="UserID" OtherKey="ToUser" Type="FriendRequest" />
+      <Association Name="User_Friend" Member="Friends" ThisKey="UserID" OtherKey="User1" Type="Friend" />
+      <Association Name="User_Friend1" Member="Friends1" ThisKey="UserID" OtherKey="User2" Type="Friend" />
+      <Association Name="User_Favorite" Member="Favorites" ThisKey="UserID" OtherKey="User_ID" Type="Favorite" />
+      <Association Name="User_Rating" Member="Ratings" ThisKey="UserID" OtherKey="User_ID" Type="Rating" />
+      <Association Name="User_Route" Member="Routes" ThisKey="UserID" OtherKey="User_ID" Type="Route" />
+      <Association Name="User_Recommendation" Member="Recommendations" ThisKey="UserID" OtherKey="User_ID" Type="Recommendation" />
+      <Association Name="User_EventsRouteCreated" Member="EventsRouteCreateds" ThisKey="UserID" OtherKey="EventCreator" Type="EventsRouteCreated" />
+      <Association Name="User_EventsRouteFavored" Member="EventsRouteFavoreds" ThisKey="UserID" OtherKey="EventCreator" Type="EventsRouteFavored" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EventsFriendshipRemoved" Member="EventsFriendshipRemoveds">
+    <Type Name="EventsFriendshipRemoved">
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FriendRelationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User1" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="EventTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Friend_EventsFriendshipRemoved" Member="Friend" ThisKey="FriendRelationID" OtherKey="FriendRelationID" Type="Friend" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EventsFriendshipEstablished" Member="EventsFriendshipEstablisheds">
+    <Type Name="EventsFriendshipEstablished">
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FriendRelationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User1" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="User2" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="EventTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Friend_EventsFriendshipEstablished" Member="Friend" ThisKey="FriendRelationID" OtherKey="FriendRelationID" Type="Friend" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EventsRouteCreated" Member="EventsRouteCreateds">
+    <Type Name="EventsRouteCreated">
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventRouteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventCreator" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="EventTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Route_EventsRouteCreated" Member="Route" ThisKey="EventRouteID" OtherKey="RouteID" Type="Route" IsForeignKey="true" />
+      <Association Name="User_EventsRouteCreated" Member="User" ThisKey="EventCreator" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.EventsRouteFavored" Member="EventsRouteFavoreds">
+    <Type Name="EventsRouteFavored">
+      <Column Name="EventID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="EventRouteID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="EventCreator" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="EventTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Route_EventsRouteFavored" Member="Route" ThisKey="EventRouteID" OtherKey="RouteID" Type="Route" IsForeignKey="true" />
+      <Association Name="User_EventsRouteFavored" Member="User" ThisKey="EventCreator" OtherKey="UserID" Type="User" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

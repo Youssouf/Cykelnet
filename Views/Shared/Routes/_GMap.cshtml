@@ -1,0 +1,41 @@
+﻿<div id="MapContainer" style="height: 100%; width: 100%;"></div>
+
+<!-- Templates -->
+<script type="text/template" id="route_save_tmpl">
+    <form action="" autocomplete="off" id="route_form" name="route_form">
+        <fieldset>
+            <legend>Route information</legend>
+            <label>Route name</label>
+            <input type="text" name="route_name" id="route_name" placeholder="Name" required="required"><br>
+
+            <label>City</label>
+            <input type="text" name="route_city" id="route_city" placeholder="City" required="required"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Optional information</legend>
+
+            <label>Description</label>
+            <textarea name="route_description" id="route_description" rows="10" cols="10" placeholder="Description"></textarea><br>
+        </fieldset>
+    
+        <fieldset>
+            <legend>Tag your route</legend>
+            <label>Add a new tag</label>
+            <input type="text" id="tag_add" /><button type="button" onclick="Route.addTag()">Add tag</button><br>
+            <div id="route_tags" style="display:none;">
+                <!-- <input type="text" name="route_tags[]" /> -->
+            </div>
+
+            <label>Existing tags</label>        
+            <ul id="route_tag_list">
+            </ul>
+        </fieldset>
+    
+        <button type="submit">Save route</button>
+        <button type="button" onclick="Route.closeDialog()">Cancel</button>
+    </form>
+</script>
+
+<script src="@Url.Content("~/Scripts/Javascript/Route/CykelNet_Map.js")"></script>
+<script src="@Url.Content("~/Scripts/Javascript/Route/Route.js")"></script>

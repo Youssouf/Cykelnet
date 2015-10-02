@@ -1,0 +1,7 @@
+﻿@model Cykelnet.Models.Events.RouteFavoredEvent
+
+<img src='@Url.Action("ProfileAvatar", "Image", new { id = Model.mEventCreator })' alt="avatar" class="avatar" />
+<div class="event-user-name">
+	@Html.ActionLink(AuthenticationHelper.getVersionedUser(Model.mEventCreator, false).FullName, "PublicProfile", "Account", new { id = (Guid)Model.mEventCreator }, new { Class = "event-creator" })
+    favorited a route: @Cykelnet.Models.RouteModel.getRouteName(Model.mRouteId)
+</div>

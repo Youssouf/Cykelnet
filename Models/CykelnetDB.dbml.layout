@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.625, 15.75" name="CykelnetDB">
+  <DataContextMoniker Name="/CykelnetDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="1ebb4cda-0d6f-4970-9557-5bc00d23c430" absoluteBounds="12.375, 3, 2, 1.9631982421875">
+      <DataClassMoniker Name="/CykelnetDBDataContext/FriendRequest" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6b4af8c7-d0b3-4663-8dab-3ea5e61ee918" absoluteBounds="12.39, 3.46, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d2f33ea0-a446-42d4-8187-6d4e5c9144f4" absoluteBounds="7.25, 0.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/CykelnetDBDataContext/Friend" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2d56cacf-148c-4e3a-abf9-7ae3be0c7ebd" absoluteBounds="7.2650000000000006, 0.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f1e858e7-4f3c-4c45-87c6-10c1e1c20514" absoluteBounds="3.5, 2, 2, 1.3862939453125">
+      <DataClassMoniker Name="/CykelnetDBDataContext/Favorite" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4cdbe88b-9d92-472c-8b37-ff53b8366a72" absoluteBounds="3.5150000000000006, 2.46, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5712c11c-6647-4f38-8107-c9f2eb008501" absoluteBounds="0.625, 7, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CykelnetDBDataContext/Rating" />
+      <nestedChildShapes>
+        <elementListCompartment Id="25597946-710f-4c75-955c-ca59a3ee76b4" absoluteBounds="0.64000000000000012, 7.4600000000000009, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="fe23e47d-5247-4016-8bab-59fb0c0a6736" absoluteBounds="4.5, 0.5, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/CykelnetDBDataContext/Tag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8424552f-15eb-44da-9aa8-e542c32ced5b" absoluteBounds="4.515, 0.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bd9ce422-03dc-4abf-b762-f9ae5f7f63b4" absoluteBounds="0.625, 0.625, 2, 1.1939925130208333">
+      <DataClassMoniker Name="/CykelnetDBDataContext/Routetag" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2a1573ae-0248-46bd-bd12-0719d40bf8a9" absoluteBounds="0.64000000000000012, 1.085, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.5 : 1.15949625651042); (2.625 : 1.15949625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Tag/Tag_Routetag" />
+      <nodes>
+        <classShapeMoniker Id="fe23e47d-5247-4016-8bab-59fb0c0a6736" />
+        <classShapeMoniker Id="bd9ce422-03dc-4abf-b762-f9ae5f7f63b4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="3e919596-a895-4678-86e9-9f876474a36d" absoluteBounds="0.625, 2.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/CykelnetDBDataContext/Route" />
+      <nestedChildShapes>
+        <elementListCompartment Id="6f912b89-03f0-44a4-b84b-acaa7e84c25c" absoluteBounds="0.64000000000000012, 3.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 3.00564697265625); (3.5 : 3.00564697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Route/Route_Favorite" />
+      <nodes>
+        <classShapeMoniker Id="3e919596-a895-4678-86e9-9f876474a36d" />
+        <classShapeMoniker Id="f1e858e7-4f3c-4c45-87c6-10c1e1c20514" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.625 : 4.97280110677083); (1.625 : 7)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Route/Route_Rating" />
+      <nodes>
+        <classShapeMoniker Id="3e919596-a895-4678-86e9-9f876474a36d" />
+        <classShapeMoniker Id="5712c11c-6647-4f38-8107-c9f2eb008501" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.625 : 2.625); (1.625 : 1.81899251302083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Route/Route_Routetag" />
+      <nodes>
+        <classShapeMoniker Id="3e919596-a895-4678-86e9-9f876474a36d" />
+        <classShapeMoniker Id="bd9ce422-03dc-4abf-b762-f9ae5f7f63b4" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8e964a07-7e66-49d1-ad3e-49fd29c1b947" absoluteBounds="5.25, 3.75, 2, 1.3862939453125">
+      <DataClassMoniker Name="/CykelnetDBDataContext/Recommendation" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3bf9f0e6-26d7-471d-a7a8-6be2db57405b" absoluteBounds="5.265, 4.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.625 : 4.36140055338542); (3.13541666666667 : 4.36140055338542 : JumpStart); (3.30208333333333 : 4.36140055338542 : JumpEnd); (5.25 : 4.36140055338542)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Route/Route_Recommendation" />
+      <nodes>
+        <classShapeMoniker Id="3e919596-a895-4678-86e9-9f876474a36d" />
+        <classShapeMoniker Id="8e964a07-7e66-49d1-ad3e-49fd29c1b947" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="0c212706-b65c-4d37-a7a2-45247ceceabc" absoluteBounds="10, 1.875, 2, 3.6939111328124996">
+      <DataClassMoniker Name="/CykelnetDBDataContext/User" />
+      <nestedChildShapes>
+        <elementListCompartment Id="de3591ff-e5d8-4b23-af14-1ea3558f6a70" absoluteBounds="10.015, 2.335, 1.9700000000000002, 3.1339111328125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(12 : 3.98159912109375); (12.375 : 3.98159912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_FriendRequest" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="1ebb4cda-0d6f-4970-9557-5bc00d23c430" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12 : 3.42829956054688); (12.375 : 3.42829956054688)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_FriendRequest1" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="1ebb4cda-0d6f-4970-9557-5bc00d23c430" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10 : 2.07294840494792); (9.25 : 2.07294840494792)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_Friend" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="d2f33ea0-a446-42d4-8187-6d4e5c9144f4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10 : 1.91147420247396); (9.25 : 1.91147420247396)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_Friend1" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="d2f33ea0-a446-42d4-8187-6d4e5c9144f4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10 : 5.3526000390625); (8.33333083333333 : 5.3526000390625 : JumpStart); (8.16666416666667 : 5.3526000390625 : JumpEnd); (7.83332958333333 : 5.3526000390625 : JumpStart); (7.66666291666667 : 5.3526000390625 : JumpEnd); (4.34375 : 5.3526000390625); (4.34375 : 3.3862939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_Favorite" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="f1e858e7-4f3c-4c45-87c6-10c1e1c20514" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.0312525 : 5.5689111328125); (11.0312525 : 7.53125); (9.70833333333333 : 7.53125 : JumpStart); (9.54166666666667 : 7.53125 : JumpEnd); (8.33333083333333 : 7.53125 : JumpStart); (8.16666416666667 : 7.53125 : JumpEnd); (7.83332958333333 : 7.53125 : JumpStart); (7.66666291666667 : 7.53125 : JumpEnd); (3.30208333333333 : 7.53125 : JumpStart); (3.13541666666667 : 7.53125 : JumpEnd); (3.08333333333333 : 7.53125 : JumpStart); (2.91666666666667 : 7.53125 : JumpEnd); (2.625 : 7.53125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_Rating" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="5712c11c-6647-4f38-8107-c9f2eb008501" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10 : 5.2444444921875); (8.33333083333333 : 5.2444444921875 : JumpStart); (8.16666416666667 : 5.2444444921875 : JumpEnd); (7.83332958333333 : 5.2444444921875 : JumpStart); (7.66666291666667 : 5.2444444921875 : JumpEnd); (4.42708333333333 : 5.2444444921875 : JumpStart); (4.26041666666667 : 5.2444444921875 : JumpEnd); (3.30208333333333 : 5.2444444921875 : JumpStart); (3.13541666666667 : 5.2444444921875 : JumpEnd); (2.97997671875 : 5.2444444921875 : JumpStart); (2.81331005208333 : 5.2444444921875 : JumpEnd); (2.1562525 : 5.2444444921875); (2.1562525 : 4.97280110677083)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_Route" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="3e919596-a895-4678-86e9-9f876474a36d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10 : 4.44314697265625); (8.33333083333333 : 4.44314697265625 : JumpStart); (8.16666416666667 : 4.44314697265625 : JumpEnd); (7.25 : 4.44314697265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_Recommendation" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="8e964a07-7e66-49d1-ad3e-49fd29c1b947" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="8ec1d8a8-b307-46da-8ef4-2b139104633c" absoluteBounds="0.625, 13.625, 2, 1.7708968098958327">
+      <DataClassMoniker Name="/CykelnetDBDataContext/EventsFriendshipRemoved" />
+      <nestedChildShapes>
+        <elementListCompartment Id="65126ed7-e0e6-4809-b1e0-7b33270f458c" absoluteBounds="0.64000000000000057, 14.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e13a8409-dc95-433e-b9fe-3661faf4dfb9" absoluteBounds="3, 13.75, 2, 1.7708968098958344">
+      <DataClassMoniker Name="/CykelnetDBDataContext/EventsFriendshipEstablished" />
+      <nestedChildShapes>
+        <elementListCompartment Id="206de649-2496-418f-a672-c679fbf894fb" absoluteBounds="3.0150000000000006, 14.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="7c64b7ec-15f0-4376-b3e1-375b73032557" absoluteBounds="0.625, 11.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CykelnetDBDataContext/EventsRouteCreated" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b6ccb93e-d704-4761-b8fd-97e2b29b0a6a" absoluteBounds="0.64000000000000057, 12.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f08389b4-36c3-4b08-9f3d-db18a65c9825" absoluteBounds="3, 11.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/CykelnetDBDataContext/EventsRouteFavored" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c91611cc-d3ba-437d-bc21-219adf5476eb" absoluteBounds="3.0150000000000006, 12.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.2499975 : 2.27089680989583); (8.2499975 : 13.65625); (7.83332958333333 : 13.65625 : JumpStart); (7.66666291666667 : 13.65625 : JumpEnd); (2.625 : 13.65625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Friend/Friend_EventsFriendshipRemoved" />
+      <nodes>
+        <classShapeMoniker Id="d2f33ea0-a446-42d4-8187-6d4e5c9144f4" />
+        <classShapeMoniker Id="8ec1d8a8-b307-46da-8ef4-2b139104633c" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.74999625 : 2.27089680989583); (7.74999625 : 14.6354484049479); (5 : 14.6354484049479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Friend/Friend_EventsFriendshipEstablished" />
+      <nodes>
+        <classShapeMoniker Id="d2f33ea0-a446-42d4-8187-6d4e5c9144f4" />
+        <classShapeMoniker Id="e13a8409-dc95-433e-b9fe-3661faf4dfb9" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.625 : 4.97280110677083); (3 : 5.34780110677083); (3 : 11.3762133041366); (2.625 : 11.7512133041366)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Route/Route_EventsRouteCreated" />
+      <nodes>
+        <classShapeMoniker Id="3e919596-a895-4678-86e9-9f876474a36d" />
+        <classShapeMoniker Id="7c64b7ec-15f0-4376-b3e1-375b73032557" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.0338451538462 : 5.5689111328125); (9.625 : 5.97775628665865); (9.625 : 11.375); (8.33333083333333 : 11.375 : JumpStart); (8.16666416666667 : 11.375 : JumpEnd); (3.30208333333333 : 11.375 : JumpStart); (3.13541666666667 : 11.375 : JumpEnd); (3.00121330413662 : 11.375); (2.625 : 11.7512133041366)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_EventsRouteCreated" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="7c64b7ec-15f0-4376-b3e1-375b73032557" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.625 : 3.87384474934896); (3.21875 : 3.87384474934896); (3.21875 : 11.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/Route/Route_EventsRouteFavored" />
+      <nodes>
+        <classShapeMoniker Id="3e919596-a895-4678-86e9-9f876474a36d" />
+        <classShapeMoniker Id="f08389b4-36c3-4b08-9f3d-db18a65c9825" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.54687875 : 5.5689111328125); (11.54687875 : 12.5392976888021); (8.33333083333333 : 12.5392976888021 : JumpStart); (8.16666416666667 : 12.5392976888021 : JumpEnd); (5 : 12.5392976888021)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/CykelnetDBDataContext/User/User_EventsRouteFavored" />
+      <nodes>
+        <classShapeMoniker Id="0c212706-b65c-4d37-a7a2-45247ceceabc" />
+        <classShapeMoniker Id="f08389b4-36c3-4b08-9f3d-db18a65c9825" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
